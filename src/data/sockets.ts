@@ -1,0 +1,1 @@
+export const MASTERWORK_TYPE_HASH = 2218962841

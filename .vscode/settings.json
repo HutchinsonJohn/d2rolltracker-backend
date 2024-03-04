@@ -1,0 +1,16 @@
+{
+  "cSpell.words": [
+    "bungie",
+    "healthcheck",
+    "Machinegun",
+    "outfile",
+    "pino",
+    "rolltracker",
+    "vendia"
+  ],
+  "eslint.validate": ["typescript"],
+  "eslint.workingDirectories": ["./"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.eol": "\n",
+  "jest.jestCommandLine": "pnpm run test"
+}

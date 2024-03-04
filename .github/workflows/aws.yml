@@ -1,0 +1,55 @@
+name: deploy-to-eb
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'src/**'
+      - 'test/**'
+      - '.github/workflows/**'
+      - 'pnpm-lock.yaml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+      -  run: pnpm install
+        
+      - name: Run tests
+        run: pnpm test
+
+      - name: Build production bundle
+        run: 
+          pnpm bundle
+          
+      - name: Create ZIP deployment package
+        run: zip -r -j deploy_package.zip ./build/
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+
+      - name: Upload package to S3 bucket
+        run: aws s3 cp deploy_package.zip s3://elasticbeanstalk-us-east-1-189307368465
+
+      - name: Create new ElasticBeanstalk Application Version
+        run: |
+          aws elasticbeanstalk create-application-version \
+          --application-name d2rolltracker \
+          --source-bundle S3Bucket="elasticbeanstalk-us-east-1-189307368465",S3Key="deploy_package.zip" \
+          --version-label "ver-${{ github.sha }}" \
+          --description "commit-sha-${{ github.sha }}"
+
+      - name: Deploy new ElasticBeanstalk Application Version
+        run: aws elasticbeanstalk update-environment --environment-name d2rolltracker-prod --version-label "ver-${{ github.sha }}"
