@@ -93,7 +93,7 @@ export async function mockCreateSessionHandler(
     })
     user = await updateUser(
       { _id: user._id },
-      { privateListId: list },
+      { privateList: list },
       { new: true },
     )
   } else {

@@ -49,7 +49,7 @@ export async function createSessionHandler(req: Request, res: Response) {
     })
     user = await updateUser(
       { _id: user._id },
-      { privateListId: list },
+      { privateList: list },
       { new: true },
     )
   } else {

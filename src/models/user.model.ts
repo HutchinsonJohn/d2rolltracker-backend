@@ -31,9 +31,9 @@ export interface User extends ShortUser {
 }
 
 export interface UserDocument extends User {
-  privateListId: Types.ObjectId
-  publicListIds: Types.ObjectId[]
-  subscribedListIds: Types.ObjectId[]
+  privateList: Types.ObjectId
+  publicLists: Types.ObjectId[]
+  subscribedLists: Types.ObjectId[]
   createdAt: Date
   updatedAt: Date
 }

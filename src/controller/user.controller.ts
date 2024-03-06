@@ -21,7 +21,7 @@ export async function getUserGodRollsForWeapon(req: Request, res: Response) {
     weaponHash,
     $or: [
       { createdBy: userId },
-      { listId: { $in: res.locals.user.subscribedListIds } },
+      { listId: { $in: res.locals.user.subscribedLists } },
     ],
   })
   return res.send(rolls)
