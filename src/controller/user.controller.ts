@@ -21,7 +21,8 @@ export async function getUserGodRollsForWeapon(req: Request, res: Response) {
     weaponHash,
     $or: [
       { createdBy: userId },
-      { listId: { $in: res.locals.user.subscribedLists } },
+      // This line is incorrect, but it's not necessary to fix until list sharing is implemented
+      // { listId: { $in: res.locals.user.subscribedLists } }
     ],
   })
   return res.send(rolls)
