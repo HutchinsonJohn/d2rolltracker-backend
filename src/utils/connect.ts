@@ -16,4 +16,5 @@ export default async function connect(retry = 0) {
     }
     throw error
   }
+  mongoose.set('strictQuery', true)
 }
