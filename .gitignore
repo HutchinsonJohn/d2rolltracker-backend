@@ -1,5 +1,7 @@
 .env
-build
+build/*
+!build/.platform
+!build/.platform/*
 dist
 node_modules
 coverage
@@ -12,6 +14,7 @@ sam-template.yaml
 sam-template.packaged.yaml
 samconfig.toml
 template.yaml
+.secrets
 
 .pnp.*
 .yarn/*
@@ -20,3 +23,7 @@ template.yaml
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

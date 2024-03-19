@@ -29,9 +29,9 @@ jobs:
       - name: Build production bundle
         run: 
           pnpm bundle
-          
+
       - name: Create ZIP deployment package
-        run: zip -r -j deploy_package.zip ./build/
+        run: cd build && zip -r deploy_package.zip ./
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -41,7 +41,7 @@ jobs:
           aws-region: "us-east-1"
 
       - name: Upload package to S3 bucket
-        run: aws s3 cp deploy_package.zip s3://elasticbeanstalk-us-east-1-189307368465
+        run: aws s3 cp ./build/deploy_package.zip s3://elasticbeanstalk-us-east-1-189307368465
 
       - name: Create new ElasticBeanstalk Application Version
         run: |

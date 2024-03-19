@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "node --loader ts-node/esm -r dotenv/config  src/index.ts  ",
+    "dev": "node --loader ts-node/esm -r dotenv/config src/index.ts",
     "test": "cross-env DOTENV_CONFIG_PATH=.env.test node --experimental-vm-modules -r dotenv/config node_modules/jest/bin/jest.js --detectOpenHandles --forceExit",
     "generate-defs": "ts-node --esm --experimental-specifier-resolution=node test/generateDefs.ts",
     "lint": "eslint src/**/*.ts{,x}",
