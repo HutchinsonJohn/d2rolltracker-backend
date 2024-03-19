@@ -4,7 +4,7 @@
 
 1. Install [NodeJS](https://nodejs.org/)
 1. Install [PNPM](https://pnpm.io/installation)
-1. Install [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+1. Install [MongoDB Community Server](https://www.mongodb.com/docs/manual/administration/install-community/)
 
 ### Clone the repo
 
@@ -25,10 +25,11 @@ git clone https://github.com/HutchinsonJohn/d2rolltracker-backend.git
 
 ### Setup .env
 
-1. Rename `.env.example` to `.env`
+1. Make a copy of `.env.example` and name it `.env`
 1. Using the keys from your bungie.net application, enter your `X_API_KEY`, `OAUTH_ID`, and `OAUTH_SECRET` in .env
 
 ### Start Dev Server
 
 1. Run pnpm install
+1. Run the [MongoDB server](https://www.mongodb.com/docs/manual/administration/install-community/)
 1. Run pnpm dev
