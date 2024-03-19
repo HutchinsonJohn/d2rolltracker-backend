@@ -37,7 +37,7 @@ export async function bungieHTTPClient(config: HttpClientConfig) {
   }).catch((error) => {
     logger.error('Could not get manifest')
     logger.error(error)
-    throw new Error(error)
+    return { data: { ErrorCode: 0 } }
   })
   return response.data
 }
@@ -52,6 +52,7 @@ export default async function loadManifest(retry = 0) {
       return loadManifest(retry + 1)
     }
     if (!manifest.path) {
+      logger.info('Loading manifest from S3')
       loadManifestFromS3()
     }
     return
