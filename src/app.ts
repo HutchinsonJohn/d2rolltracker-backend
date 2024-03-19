@@ -11,6 +11,7 @@ export const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.set('trust proxy', process.env.TRUST_PROXIES || 0)
 
 if (process.env.NODE_ENV !== 'test') {
   app.use(pinoHttp({ logger: logger }))
